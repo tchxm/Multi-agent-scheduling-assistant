@@ -1,7 +1,38 @@
+# Environment
 .env
+
+# Databases (generated at runtime)
 *.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+
+# Python
 __pycache__/
-.pytest_cache/
 *.pyc
 *.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Linting
 .ruff_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Debug scripts
+debug_*.py
