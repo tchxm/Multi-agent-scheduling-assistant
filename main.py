@@ -98,7 +98,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from fastapi.responses import RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 # Serve frontend static files
 frontend_path = Path(__file__).parent / "frontend"
@@ -107,9 +107,12 @@ if frontend_path.exists():
 
 
 @app.get("/")
-async def root_redirect():
-    """Redirect root path to the frontend chat UI."""
-    return RedirectResponse(url="/frontend/")
+async def serve_root():
+    """Serve the frontend chat UI directly at the root path."""
+    index_file = frontend_path / "index.html"
+    if index_file.exists():
+        return HTMLResponse(content=index_file.read_text(encoding="utf-8"))
+    raise HTTPException(status_code=404, detail="index.html not found")
 
 
 # ---------------------------------------------------------------------------

@@ -187,7 +187,7 @@ WEBHOOK_URL=https://webhook.site/your-unique-url
 uvicorn main:app --reload
 ```
 
-Visit **http://localhost:8000/frontend/** for the chat interface.
+Visit **http://localhost:8000/** for the chat interface.
 
 ### 4. Run Tests (No API Key Needed)
 
