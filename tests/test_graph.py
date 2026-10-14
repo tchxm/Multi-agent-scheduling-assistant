@@ -64,7 +64,9 @@ def _make_input(message_text):
         "reservation_id": None,
         "notification_sent": False,
         "final_response": None,
-        "reference_time": None,
+        # Pin "now" so date resolution is deterministic. Without it the graph used the real clock, so "July 16"
+        # silently resolved to next year once that date had passed and the happy-path test started failing.
+        "reference_time": FIXED_NOW.isoformat(),
     }
 
 
