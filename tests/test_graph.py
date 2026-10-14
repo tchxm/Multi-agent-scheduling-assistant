@@ -51,6 +51,9 @@ def _make_input(message_text):
     """Helper to create a full input state dict for graph.invoke."""
     return {
         "messages": [HumanMessage(content=message_text)],
+        # Pin "now" for date resolution too. Without it the graph used the real clock, so "July 16" silently
+        # resolved to next year once this date had passed and the happy-path test started failing.
+        "reference_time": FIXED_NOW.isoformat(),
         "route": None,
         "raw_date_phrase": None,
         "raw_time_phrase": None,
